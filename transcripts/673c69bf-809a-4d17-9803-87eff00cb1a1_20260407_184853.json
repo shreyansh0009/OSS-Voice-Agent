@@ -1,0 +1,172 @@
+{
+  "call_sid": "673c69bf-809a-4d17-9803-87eff00cb1a1",
+  "session_id": "11de599b-a041-415c-ad37-2826d03dc538",
+  "timestamp": "2026-04-07T18:48:53",
+  "duration_seconds": 190.2,
+  "language": "hi",
+  "metadata": {
+    "name": "दोनाली बिसवाल",
+    "mobile": "७३५८३०२०९३",
+    "intent": "",
+    "address": "",
+    "product": "",
+    "language": "hi"
+  },
+  "transcript": [
+    {
+      "role": "assistant",
+      "content": "Hello! Welcome to Godrej Customer Care. I'm Naina — how may I assist you today?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Hello.",
+      "lang": "en"
+    },
+    {
+      "role": "assistant",
+      "content": "Could I have your name, please?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Hello नेना.",
+      "lang": "en"
+    },
+    {
+      "role": "assistant",
+      "content": "Hmm... Could I have your name, please?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Hello hello नेना. Hello.",
+      "lang": "en"
+    },
+    {
+      "role": "assistant",
+      "content": "Okay... Is your name Nena, correct?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "No, my name is दोनाली बिसवाल.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका नाम दोनाली बिसवाल है क्या?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Are right.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका नाम दोनाली बिसवाल है| अब आपका मोबाइल नंबर क्या है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "02:09 3.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर क्या है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Double 73583 02:09 3.\n[PARSED_MOBILE:7358302093]",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर ७३५८३०२०९३ है क्या?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "You are wrong. Hello, listen.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं आपका मोबाइल नंबर दोबारा पूछता हूँ, क्या आपका मोबाइल नंबर वास्तव में ७३५८३०२०९३ है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "आप हिंदी में क्यों बोल रही है?",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं आपका मोबाइल नंबर दोबारा पूछती हूँ, क्या आपका मोबाइल नंबर वास्तव में ७३५८३०२०९३ है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Yes, you are right.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर ७३५८३०२०९३ है| [HANDOFF:स्क्रीनर] [NAME:दोनाली बिसवाल] [MOBILE:७३५८३०२०९३]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "लेना.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर ७३५८३०२०९३ है| [HANDOFF:स्क्रीनर] [NAME:दोनाली बिसवाल] [MOBILE:७३५८३०२०९३]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "नहीं listen listen, hello.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं समझ गई। आपका मोबाइल नंबर ७३५८३०२०९३ है| [HANDOFF:स्क्रीनर] [NAME:दोनाली बिसवाल] [MOBILE:७३५८३०२०९३]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Hello?",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं समझ गई। आपका मोबाइल नंबर ७३५८३०२०९३ है| [HANDOFF:स्क्रीनर] [NAME:दोनाली बिसवाल] [MOBILE:७३५८३०२०९३]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "and",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर ७३५८३०२०९३ है| [HANDOFF:स्क्रीनर] [NAME:दोनाली बिसवाल] [MOBILE:७३५८३०२०९३]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "tell you",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं समझ गई। आपका मोबाइल नंबर ७३५८३०२०९३ है| [HANDOFF:स्क्रीनर] [NAME:दोनाली बिसवाल] [MOBILE:७३५८३०२०९३]",
+      "lang": "hi"
+    }
+  ]
+}

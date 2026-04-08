@@ -1,0 +1,122 @@
+{
+  "call_sid": "1383989d-f792-4737-a5c2-dc6718ccd888",
+  "session_id": "cafb6fe8-8edc-45dd-aa75-fab448ba31a1",
+  "timestamp": "2026-04-07T18:51:29",
+  "duration_seconds": 52.3,
+  "language": "hi",
+  "metadata": {
+    "name": "दोनाली विश्वाल",
+    "mobile": "9583256247",
+    "intent": "",
+    "address": "",
+    "product": "",
+    "language": "hi"
+  },
+  "transcript": [
+    {
+      "role": "assistant",
+      "content": "Hello! Welcome to Godrej Customer Care. I'm Naina — how may I assist you today?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Hello,",
+      "lang": "en"
+    },
+    {
+      "role": "assistant",
+      "content": "Could I have your name, please?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "दोनाली विश्वाल.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका नाम दोनाली विश्वाल है क्या?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "हां.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर क्या है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "You know?",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर क्या है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Ok. 9583256247.\n[PARSED_MOBILE:9583256247]",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर नौ पांच आठ तीन दो पांच छह दो चार सात है क्या? [HANDOFF:screener] [NAME:दोनाली विश्वाल] [MOBILE:9583256247]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: 9583256247\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: Ok. 9583256247.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " बताइए, आज मैं आपकी कैसे मदद कर सकती हूँ? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: 9583256247\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: Actually, I recently bought a gold raise FCE.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " बताइए, आपको गोल्ड रेज़ एफसीई में क्या समस्या आ रही है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: 9583256247\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: And I wanted help",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " बताइए, आपको किस प्रकार की मदद चाहिए? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: 9583256247\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: but",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " बताइए, आपको क्या समस्या हो रही है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: 9583256247\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: that",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " बताइए, आपकी क्या समस्या है? [LANG:hi]",
+      "lang": "hi"
+    }
+  ]
+}

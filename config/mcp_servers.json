@@ -1,0 +1,58 @@
+{
+  "servers": [
+    {
+      "name": "dms",
+      "url": "https://your-dms-api.com/mcp",
+      "protocol": "mcp",
+      "api_key_env": "DMS_API_KEY",
+      "timeout": 10,
+      "comment": "Dealer Management System MCP server. Exposes: get_service_slots, book_service_appointment, get_inventory, book_test_drive"
+    },
+    {
+      "name": "salesforce",
+      "url": "http://localhost:8083",
+      "protocol": "mcp",
+      "timeout": 20,
+      "comment": "Salesforce MCP server. Run: uvicorn providers.salesforce.server:app --port 8083. Requires SF_CLIENT_ID, SF_CLIENT_SECRET env vars."
+    }
+  ],
+  "_comment": [
+    "Each server entry:",
+    "  name        - identifier used in registry tool_map",
+    "  url         - base URL of the MCP server",
+    "  protocol    - 'mcp' (JSON-RPC 2.0) or 'rest' (POST /{tool_name})",
+    "  api_key_env - env var containing the API key (injected as X-API-Key header)",
+    "  timeout     - request timeout in seconds",
+    "",
+    "DMS tool reference:",
+    "  get_service_slots(date, service_type)                                              -> [{time, available}]",
+    "  book_service_appointment(name, phone, date, time, service_type, vehicle)           -> {confirmation_id, ...}",
+    "  get_inventory(make, model, year, trim)                                             -> [{stock_num, color, price, mileage}]",
+    "  book_test_drive(name, phone, date, time, vehicle_interest)                        -> {confirmation_id, ...}",
+    "",
+    "For local dev, run a mock MCP server:",
+    "  uvicorn mock_dms_server:app --port 8081",
+    "",
+    "Salesforce tool reference (requires SF_CLIENT_ID + SF_CLIENT_SECRET):",
+    "  sf_create_lead(last_name, first_name?, company?, email?, phone?, lead_source?, description?)  -> {id, success}",
+    "  sf_get_lead(lead_id, fields?)                                                                -> Lead record",
+    "  sf_update_lead(lead_id, ...fields)                                                           -> {success, id}",
+    "  sf_search_leads(search_term, field?, limit?)                                                 -> {records}",
+    "  sf_create_contact(last_name, first_name?, email?, phone?, account_id?, title?)               -> {id, success}",
+    "  sf_get_contact(contact_id, fields?)                                                          -> Contact record",
+    "  sf_update_contact(contact_id, ...fields)                                                     -> {success, id}",
+    "  sf_search_contacts(search_term, field?, limit?)                                              -> {records}",
+    "  sf_create_opportunity(name, close_date, stage?, account_id?, amount?)                        -> {id, success}",
+    "  sf_get_opportunity(opportunity_id, fields?)                                                  -> Opportunity record",
+    "  sf_update_opportunity(opportunity_id, StageName?, Amount?, CloseDate?)                       -> {success, id}",
+    "  sf_search_opportunities(search_term, limit?)                                                 -> {records}",
+    "  sf_get_account(account_id, fields?)                                                          -> Account record",
+    "  sf_search_accounts(name, limit?)                                                             -> {records}",
+    "  sf_create_account(name, phone?, industry?, type?, billing_city?)                             -> {id, success}",
+    "  sf_soql_query(soql)                                                                          -> {records, totalSize}",
+    "  sf_sosl_search(sosl)                                                                         -> {searchRecords}",
+    "",
+    "To run Salesforce MCP server:",
+    "  uvicorn providers.salesforce.server:app --port 8083"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "Godrej Appliances — Customer Support Squad",
+  "description": "Inbound & outbound call handler for Godrej Appliances: greets caller, discovers requirement, routes to service/complaint handling, sales/product inquiry, appointment scheduling, or call closure. Supports English and Hindi. Handles warranty, installation, escalation, and post-service follow-up.",
+  "leader": "hello",
+  "agents": [
+    {
+      "name": "hello",
+      "class": "HelloAgent",
+      "description": "Naina greets the caller, detects call direction (inbound/outbound), locks language (English or Hindi), confirms customer name with pronunciation check, verifies mobile number, identifies customer vs dealer, and routes to the correct specialist agent. Handles first-contact edge cases: wrong number, no answer, regional language, third-party callers, and callback scheduling.",
+      "can_handoff_to": ["screener"]
+    },
+    {
+      "name": "screener",
+      "class": "ScreenerAgent",
+      "description": "Discovers the customer's exact requirement through open-ended questions. Classifies the call into: complaint, service request, installation, warranty inquiry, sales/product info, reschedule, or ticket closure. Collects product name, model number, purchase date, and service address. Confirms all details before routing. Handles multi-issue calls, existing open tickets, and out-of-scope requests.",
+      "can_handoff_to": ["service", "sales", "scheduler", "closer"]
+    },
+    {
+      "name": "service",
+      "class": "ServiceAgent",
+      "description": "Handles complaint registration, service booking, installation requests, warranty verification, and return/replacement guidance. Follows empathy-first flow, collects issue details, checks warranty status, registers SR with SMS confirmation, and commits to visit timelines based on call time (before/after 6:30 PM rule). Manages escalations including safety emergencies (smoke/shock/leakage), repeat complainants, engineer no-shows, and angry customers via three-stage de-escalation. Hands off to scheduler for appointment booking or closer for wrap-up.",
+      "can_handoff_to": ["scheduler", "closer", "sales"],
+      "rag_collection": "godrej_appliances_service",
+      "mcp_server": "dms"
+    },
+    {
+      "name": "sales",
+      "class": "SalesAgent",
+      "description": "Handles product feature inquiries, pricing guidance, availability, product comparisons, dealer location, and new purchase assistance. Does not invent prices or offers — directs to official website or authorized dealers. Handles bulk/corporate purchase requests, grey market product concerns, EMI/financing queries, and post-purchase transition to installation or warranty registration. Hands off to service for existing product issues.",
+      "can_handoff_to": ["service", "closer"],
+      "rag_collection": "godrej_appliances_products",
+      "mcp_server": "dms"
+    },
+    {
+      "name": "scheduler",
+      "class": "SchedulerAgent",
+      "description": "Books, confirms, reschedules, and cancels service or installation appointments. Asks for customer's preferred date and time, validates against workshop calendar, offers alternatives when slot is unavailable, and handles area capacity issues. Manages outbound callback scheduling, pre-visit reminders, engineer no-show re-booking, remote area scheduling, and repeat reschedule flagging (3+ reschedules escalate to supervisor). Sends SMS confirmation for every confirmed slot.",
+      "can_handoff_to": ["closer"],
+      "mcp_server": "dms"
+    },
+    {
+      "name": "closer",
+      "class": "CloserAgent",
+      "description": "Handles ticket status tracking (by SR number or mobile), confirms resolution with a full summary read-back, checks customer satisfaction genuinely, and closes the call warmly with the Godrej tagline. Manages partial resolution, last-moment queries, transfer to human agent on request, legal threat escalation, social media complaint urgency, and positive engineer feedback logging. Runs a mandatory post-call metadata audit checklist before session close.",
+      "can_handoff_to": []
+    }
+  ]
+}
