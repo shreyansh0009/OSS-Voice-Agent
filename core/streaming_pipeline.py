@@ -369,6 +369,11 @@ class StreamingPipeline:
         session.set("language_instruction", _LANG_INSTRUCTIONS.get(_init_lang, ""))
 
         call_start_mono = time.monotonic()
+
+        # ── Call recording ────────────────────────────────────────────────
+        from integrations.call_recorder import CallRecorder
+        recorder = CallRecorder(call_sid)
+
         logger.info(f"[{call_sid}] AudioSocket call started")
         await _lat.separator(call_sid, f"CALL STARTED  sid={call_sid}")
         await _lat.event(call_sid, "CALL_STARTED")
@@ -402,11 +407,11 @@ class StreamingPipeline:
                 done, pending = await asyncio.wait(
                     [
                         asyncio.create_task(
-                            self._recv_audiosocket(reader, conn_holder_ref[0], audio_out, call_sid, state),
+                            self._recv_audiosocket(reader, conn_holder_ref[0], audio_out, call_sid, state, recorder),
                             name="recv",
                         ),
                         asyncio.create_task(
-                            self._send_audiosocket(writer, audio_out, call_sid, state),
+                            self._send_audiosocket(writer, audio_out, call_sid, state, recorder),
                             name="send",
                         ),
                     ],
@@ -453,6 +458,18 @@ class StreamingPipeline:
                 await _run_call_inner()
         else:
             await _run_call_inner()
+
+        # ── Finalize recording and upload to Cloudinary ─────────────────
+        try:
+            recorder.finalize()
+            from config.settings import Settings as _RecSettings
+            _rec_settings = _RecSettings.from_env()
+            recording_url = await recorder.upload_to_cloudinary(_rec_settings)
+            session.set("recording_url", recording_url)
+            recorder.cleanup()
+        except Exception:
+            logger.exception(f"[{call_sid}] Recording upload failed")
+            session.set("recording_url", "")
 
         # Save transcript before clearing call state
         from core.transcript_logger import save_transcript
@@ -559,6 +576,7 @@ class StreamingPipeline:
         audio_out: asyncio.Queue,
         call_sid: str,
         state: _TurnState,
+        recorder=None,
     ) -> None:
         """
         Reads AudioSocket frames from Asterisk.
@@ -589,6 +607,10 @@ class StreamingPipeline:
                     elif frame_type == AS_TYPE_SLIN:
                         if state.call_ended:
                             continue
+
+                        # Record incoming audio (caller side)
+                        if recorder:
+                            recorder.record_incoming(payload)
 
                         if state.speaking:
                             # Send silence (not actual echo) to Deepgram so its VAD
@@ -1026,6 +1048,7 @@ class StreamingPipeline:
         audio_out: asyncio.Queue,
         call_sid: str,
         state: _TurnState,
+        recorder=None,
     ) -> None:
         """Send audio frames to Asterisk with real-time pacing (20ms/frame)."""
         next_at = 0.0
@@ -1040,6 +1063,10 @@ class StreamingPipeline:
                 continue
 
             try:
+                # Record outgoing audio (agent TTS side)
+                if recorder:
+                    recorder.record_outgoing(chunk)
+
                 frame = _make_audio_frame(chunk)
                 writer.write(frame)
 

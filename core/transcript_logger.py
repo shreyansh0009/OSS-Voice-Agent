@@ -99,6 +99,26 @@ async def save_transcript(
         )
         logger.info(f"[{call_sid}] Extracted data saved → extracted_data/{filename}")
 
+        # ── Post-call integrations ───────────────────────────────────────
+        from config.settings import Settings
+        from integrations.salesforce import create_case
+        from integrations.email_notify import send_email
+        from integrations.whatsapp_notify import send_whatsapp
+
+        settings = Settings.from_env()
+        transcript_text = "\n".join(
+            f"{'Agent' if m.get('role') == 'assistant' else 'Customer'}: {m.get('content', '')}"
+            for m in session.history
+        )
+
+        # 1. Create Salesforce case
+        sf_result = await create_case(settings, session, transcript_text, duration)
+        case_number = sf_result.get("caseNumber", "") if sf_result else ""
+
+        # 2. Send email + WhatsApp notifications (need case number from SF)
+        await send_email(settings, session, case_number)
+        await send_whatsapp(settings, session, case_number)
+
     except Exception:
         logger.exception(f"[{call_sid}] Failed to save transcript/extracted data")
 

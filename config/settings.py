@@ -82,6 +82,28 @@ class Settings:
     # Squad
     squad_path: str = str(Path(__file__).parent / "squads" / "appliances_squad.json")
 
+    # Salesforce (password grant flow)
+    sf_instance_url: str = ""       # e.g. "https://orgfarm-xxx.develop.my.salesforce.com"
+    sf_client_id: str = ""
+    sf_client_secret: str = ""
+    sf_username: str = ""
+    sf_password: str = ""           # password + security token concatenated
+    sf_access_token: str = ""       # optional pre-set token (fallback if no username)
+
+    # Cloudinary (call recording upload)
+    cloudinary_cloud_name: str = ""
+    cloudinary_api_key: str = ""
+    cloudinary_api_secret: str = ""
+
+    # Email (Resend)
+    resend_api_key: str = ""
+    resend_from_email: str = "noreply@crmlanding.co.in"
+
+    # WhatsApp Business API
+    whatsapp_access_token: str = ""
+    whatsapp_phone_number_id: str = ""       # Facebook phone number ID
+    whatsapp_template_name: str = "godrej_service_demo"
+
     # Exotel (Indian telephony)
     exotel_api_key: str = ""
     exotel_api_token: str = ""
@@ -159,6 +181,24 @@ class Settings:
                 "SQUAD_PATH",
                 str(Path(__file__).parent / "squads" / "appliances_squad.json"),
             ),
+            sf_instance_url=os.getenv("SF_INSTANCE_URL", ""),
+            sf_client_id=os.getenv("SF_CLIENT_ID", ""),
+            sf_client_secret=os.getenv("SF_CLIENT_SECRET", ""),
+            sf_username=os.getenv("SF_USERNAME", ""),
+            sf_password=os.getenv("SF_PASSWORD", ""),
+            sf_access_token=os.getenv("SF_ACCESS_TOKEN", ""),
+
+            cloudinary_cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME", ""),
+            cloudinary_api_key=os.getenv("CLOUDINARY_API_KEY", ""),
+            cloudinary_api_secret=os.getenv("CLOUDINARY_API_SECRET", ""),
+
+            resend_api_key=os.getenv("RESEND_API_KEY", ""),
+            resend_from_email=os.getenv("RESEND_FROM_EMAIL", "noreply@crmlanding.co.in"),
+
+            whatsapp_access_token=os.getenv("WHATSAPP_ACCESS_TOKEN", ""),
+            whatsapp_phone_number_id=os.getenv("WHATSAPP_PHONE_NUMBER_ID", ""),
+            whatsapp_template_name=os.getenv("WHATSAPP_TEMPLATE_NAME", "godrej_service_demo"),
+
             exotel_api_key=os.getenv("EXOTEL_API_KEY", ""),
             exotel_api_token=os.getenv("EXOTEL_API_TOKEN", ""),
             exotel_account_sid=os.getenv("EXOTEL_ACCOUNT_SID", ""),
