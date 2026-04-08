@@ -1,0 +1,32 @@
+{
+  "call_sid": "6f1cc15e-7f04-4015-b94d-08f9b3566bf1",
+  "session_id": "9f82e58a-6baf-4679-a50e-fb257af5c958",
+  "timestamp": "2026-04-07T19:10:16",
+  "duration_seconds": 14.3,
+  "language": "hi",
+  "metadata": {
+    "name": "",
+    "mobile": "",
+    "intent": "",
+    "address": "",
+    "product": "",
+    "language": "hi"
+  },
+  "transcript": [
+    {
+      "role": "assistant",
+      "content": "Hello! Welcome to Godrej Customer Care. I'm Naina — how may I assist you today?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "मेरा मेरी AC ख़राब हो गई है.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका नाम क्या है?",
+      "lang": "hi"
+    }
+  ]
+}

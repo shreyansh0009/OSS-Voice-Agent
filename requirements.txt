@@ -1,0 +1,53 @@
+# Web server
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+httpx>=0.27.0
+
+# ── STT ───────────────────────────────────────────────────────────────────────
+# Default: Deepgram Nova-2 (streaming WebSocket, ~200ms latency)
+websockets>=12.0             # Deepgram streaming STT
+
+# Fallback: local Whisper (higher latency, no API key needed)
+# faster-whisper>=1.0.0
+# numpy>=1.24.0
+
+# ── LLM ───────────────────────────────────────────────────────────────────────
+# Default: Groq (llama-3.3-70b, ~300 tok/s, true streaming via SSE)
+# Groq is accessed via HTTP — no extra package needed (uses httpx)
+
+# Fallback: Ollama (accessed via HTTP, no extra package needed)
+
+# Optional: LiteLLM (multi-provider routing)
+# litellm>=1.40.0
+
+# ── TTS ───────────────────────────────────────────────────────────────────────
+# Default: Cartesia Sonic-2 (streaming, ~80ms first chunk)
+# Cartesia is accessed via HTTP — no extra package needed (uses httpx)
+
+# Fallback: Piper (local, CPU-friendly)
+# piper-tts>=1.2.0
+
+# Fallback: Kokoro (higher quality local TTS)
+# kokoro-onnx>=0.4.0
+
+# ── Audio ─────────────────────────────────────────────────────────────────────
+# audioop deprecated in Python 3.13+ — use audioop-lts as drop-in replacement
+audioop-lts>=0.2.1; python_version >= "3.13"
+
+# ── RAG ───────────────────────────────────────────────────────────────────────
+chromadb>=0.5.0                  # vector store (embedded, no server needed)
+
+# Embeddings — choose one:
+# Option A: Ollama embeddings (uses same Ollama server as LLM, no extra package)
+#   Just set EMBEDDING_PROVIDER=ollama and pull: ollama pull nomic-embed-text
+
+# Option B: sentence-transformers (fully local, no Ollama needed)
+sentence-transformers>=3.0.0
+
+# ── MCP ───────────────────────────────────────────────────────────────────────
+# No extra package needed — MCP calls are plain HTTP via httpx (already installed)
+#
+# Optional: official MCP Python SDK (for stdio-based MCP servers)
+# mcp>=1.0.0

@@ -1,0 +1,167 @@
+"""
+Application settings — loaded from environment variables.
+"""
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass
+from pathlib import Path
+
+
+@dataclass
+class Settings:
+    # Server
+    host: str = "0.0.0.0"
+    port: int = 8080
+
+    # LLM — default: Groq (fastest)
+    llm_provider: str = "groq"            # "groq" | "openai" | "ollama" | "litellm"
+    groq_api_key: str = ""
+    groq_model: str = "llama-3.1-8b-instant"  # 750 tok/s vs 280 tok/s on 70b
+    openai_api_key: str = ""
+    openai_model: str = "gpt-4o-mini"
+    ollama_base_url: str = "http://localhost:11434"
+    ollama_model: str = "llama3.2"
+    llm_temperature: float = 0.7
+
+    # STT — default: Deepgram (streaming, ~200ms latency)
+    stt_provider: str = "deepgram"        # "deepgram" | "whisper"
+    deepgram_api_key: str = ""
+    deepgram_model: str = "nova-3"
+    deepgram_language: str = ""          # empty = auto-detect multilingual (detect_language=true)
+    deepgram_endpointing_ms: int = 150    # lowered from 300ms — faster end-of-speech detection
+    whisper_model: str = "small"
+    whisper_device: str = "cpu"
+    whisper_compute: str = "int8"
+
+    # TTS — default: Cartesia Sonic (streaming, ~80ms first chunk)
+    tts_provider: str = "elevenlabs"        # "elevenlabs" | "piper" | "kokoro"
+
+    # TTS — ElevenLabs Flash v2.5
+    elevenlabs_api_key: str = ""
+    elevenlabs_voice_id: str = "21m00Tcm4TlvDq8ikWAM"  # Rachel (English default)
+    elevenlabs_model: str = "eleven_flash_v2_5"
+    elevenlabs_stability: float = 0.5
+    elevenlabs_similarity_boost: float = 0.75
+    elevenlabs_style: float = 0.0
+    elevenlabs_speed: float = 1.0
+    # Per-language voice IDs (optional — Flash v2.5 works multilingually on any voice)
+    elevenlabs_voice_hi: str = ""   # Hindi
+    elevenlabs_voice_bn: str = ""   # Bengali
+    elevenlabs_voice_te: str = ""   # Telugu
+    elevenlabs_voice_mr: str = ""   # Marathi
+    elevenlabs_voice_ta: str = ""   # Tamil
+    elevenlabs_voice_gu: str = ""   # Gujarati
+    elevenlabs_voice_kn: str = ""   # Kannada
+    elevenlabs_voice_pa: str = ""   # Punjabi
+    elevenlabs_voice_ml: str = ""   # Malayalam
+    elevenlabs_voice_or: str = ""   # Odia
+
+    # Welcome message (spoken by agent when call connects)
+    welcome_message: str = "Hello! Thank you for calling. How can I assist you today?"
+
+    cartesia_api_key: str = ""
+    cartesia_voice_id: str = "a0e99841-438c-4a64-b679-ae501e7d6091"
+    cartesia_model: str = "sonic-2"
+    cartesia_number_speed: float = 1.5
+
+    piper_model_path: str = ""
+    kokoro_model_path: str = ""
+    kokoro_voice: str = "af_heart"
+
+    # Telephony — Asterisk AudioSocket
+    audiosocket_host: str = "0.0.0.0"
+    audiosocket_port: int = 9093
+
+    # Legacy Twilio (unused with AudioSocket)
+    twilio_account_sid: str = ""
+    twilio_auth_token: str = ""
+    webhook_base_url: str = ""
+    websocket_base_url: str = ""
+
+    # Squad
+    squad_path: str = str(Path(__file__).parent / "squads" / "appliances_squad.json")
+
+    # Exotel (Indian telephony)
+    exotel_api_key: str = ""
+    exotel_api_token: str = ""
+    exotel_account_sid: str = ""
+    exotel_subdomain: str = "@api.in.exotel.com"
+    exotel_app_id: str = ""
+
+    @classmethod
+    def from_env(cls) -> "Settings":
+        return cls(
+            host=os.getenv("HOST", "0.0.0.0"),
+            port=int(os.getenv("PORT", "8080")),
+
+            llm_provider=os.getenv("LLM_PROVIDER", "groq"),
+            groq_api_key=os.getenv("GROQ_API_KEY", ""),
+            groq_model=os.getenv("GROQ_MODEL", "llama-3.1-8b-instant"),
+            openai_api_key=os.getenv("OPENAI_API_KEY", ""),
+            openai_model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+            ollama_base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
+            ollama_model=os.getenv("OLLAMA_MODEL", "llama3.2"),
+            llm_temperature=float(os.getenv("LLM_TEMPERATURE", "0.7")),
+
+            stt_provider=os.getenv("STT_PROVIDER", "deepgram"),
+            deepgram_api_key=os.getenv("DEEPGRAM_API_KEY", ""),
+            deepgram_model=os.getenv("DEEPGRAM_MODEL", "nova-2"),
+            deepgram_language=os.getenv("DEEPGRAM_LANGUAGE", "").strip(),  # empty = auto-detect
+            deepgram_endpointing_ms=int(os.getenv("DEEPGRAM_ENDPOINTING_MS", "300")),
+            whisper_model=os.getenv("WHISPER_MODEL", "small"),
+            whisper_device=os.getenv("WHISPER_DEVICE", "cpu"),
+            whisper_compute=os.getenv("WHISPER_COMPUTE", "int8"),
+
+            tts_provider=os.getenv("TTS_PROVIDER", "elevenlabs"),
+
+            elevenlabs_api_key=os.getenv("ELEVENLABS_API_KEY", ""),
+            elevenlabs_voice_id=os.getenv("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM"),
+            elevenlabs_model=os.getenv("ELEVENLABS_MODEL", "eleven_flash_v2_5"),
+            elevenlabs_stability=float(os.getenv("ELEVENLABS_STABILITY", "0.5")),
+            elevenlabs_similarity_boost=float(os.getenv("ELEVENLABS_SIMILARITY_BOOST", "0.75")),
+            elevenlabs_style=float(os.getenv("ELEVENLABS_STYLE", "0.0")),
+            elevenlabs_speed=float(os.getenv("ELEVENLABS_SPEED", "1.0")),
+            elevenlabs_voice_hi=os.getenv("ELEVENLABS_VOICE_HI", ""),
+            elevenlabs_voice_bn=os.getenv("ELEVENLABS_VOICE_BN", ""),
+            elevenlabs_voice_te=os.getenv("ELEVENLABS_VOICE_TE", ""),
+            elevenlabs_voice_mr=os.getenv("ELEVENLABS_VOICE_MR", ""),
+            elevenlabs_voice_ta=os.getenv("ELEVENLABS_VOICE_TA", ""),
+            elevenlabs_voice_gu=os.getenv("ELEVENLABS_VOICE_GU", ""),
+            elevenlabs_voice_kn=os.getenv("ELEVENLABS_VOICE_KN", ""),
+            elevenlabs_voice_pa=os.getenv("ELEVENLABS_VOICE_PA", ""),
+            elevenlabs_voice_ml=os.getenv("ELEVENLABS_VOICE_ML", ""),
+            elevenlabs_voice_or=os.getenv("ELEVENLABS_VOICE_OR", ""),
+
+            welcome_message=os.getenv(
+                "WELCOME_MESSAGE",
+                "Hello! Thank you for calling. How can I assist you today?"
+            ),
+
+            cartesia_api_key=os.getenv("CARTESIA_API_KEY", ""),
+            cartesia_voice_id=os.getenv("CARTESIA_VOICE_ID", "a0e99841-438c-4a64-b679-ae501e7d6091"),
+            cartesia_model=os.getenv("CARTESIA_MODEL", "sonic-2"),
+            cartesia_number_speed=float(os.getenv("CARTESIA_NUMBER_SPEED", "1.5")),
+
+            piper_model_path=os.getenv("PIPER_MODEL_PATH", ""),
+            kokoro_model_path=os.getenv("KOKORO_MODEL_PATH", ""),
+            kokoro_voice=os.getenv("KOKORO_VOICE", "af_heart"),
+
+            audiosocket_host=os.getenv("AUDIOSOCKET_HOST", "0.0.0.0"),
+            audiosocket_port=int(os.getenv("AUDIOSOCKET_PORT", "9093")),
+
+            twilio_account_sid=os.getenv("TWILIO_ACCOUNT_SID", ""),
+            twilio_auth_token=os.getenv("TWILIO_AUTH_TOKEN", ""),
+            webhook_base_url=os.getenv("WEBHOOK_BASE_URL", ""),
+            websocket_base_url=os.getenv("WEBSOCKET_BASE_URL", ""),
+
+            squad_path=os.getenv(
+                "SQUAD_PATH",
+                str(Path(__file__).parent / "squads" / "appliances_squad.json"),
+            ),
+            exotel_api_key=os.getenv("EXOTEL_API_KEY", ""),
+            exotel_api_token=os.getenv("EXOTEL_API_TOKEN", ""),
+            exotel_account_sid=os.getenv("EXOTEL_ACCOUNT_SID", ""),
+            exotel_subdomain=os.getenv("EXOTEL_SUBDOMAIN", "@api.in.exotel.com"),
+            exotel_app_id=os.getenv("EXOTEL_APP_ID", ""),
+        )

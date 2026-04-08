@@ -1,0 +1,302 @@
+{
+  "call_sid": "b139dbdd-02df-408b-8166-af1fd68122a0",
+  "session_id": "5101b9d3-bc5a-4e33-ba18-16a9aecf904a",
+  "timestamp": "2026-04-07T17:51:09",
+  "duration_seconds": 245.4,
+  "language": "hi",
+  "metadata": {
+    "name": "दोनाली विश्वाल",
+    "mobile": "७३५८३०२०९३",
+    "intent": "",
+    "address": "",
+    "product": "",
+    "language": "hi"
+  },
+  "transcript": [
+    {
+      "role": "assistant",
+      "content": "Hello! Welcome to Godrej Customer Care. I'm Naina — how may I assist you today?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Hello, nena.",
+      "lang": "en"
+    },
+    {
+      "role": "assistant",
+      "content": "Could I have your name, please?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Ok,",
+      "lang": "en"
+    },
+    {
+      "role": "assistant",
+      "content": "Hmm... Could you please tell me your name?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Am I audible to you?",
+      "lang": "en"
+    },
+    {
+      "role": "assistant",
+      "content": "Okay... Yes, I can hear you. Could I have your name, please?",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Yes, I tell you ना I am दोनाली विश्वाल.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका नाम दोनाली विश्वाल है क्या?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Yes.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका नाम दोनाली विश्वाल है क्या?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "हां.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर क्या है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Why you switch directly to हिंदी?",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं आपका मोबाइल नंबर जानना चाहता हूँ। क्या आप मुझे बता सकते हैं?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Ok.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर क्या है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "जी.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर क्या है?",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Double 73583 02:09 3.\n[PARSED_MOBILE:7358302093]",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपका मोबाइल नंबर ७३५८३०२०९३ है क्या? [HANDOFF:screener] [NAME:दोनाली विश्वाल] [MOBILE:७३५८३०२०९३]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: ७३५८३०२०९३\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: Double 73583 02:09 3.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " बताइए, आज मैं आपकी कैसे मदद कर सकती हूँ? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: ७३५८३०२०९३\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: No.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " बताइए, आपको क्या समस्या है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: ७३५८३०२०९३\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: You are totally wrong. My number is not",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं समझती हूँ, आपको कुछ समस्या है, बताइए मैं आपकी कैसे मदद कर सकती हूँ? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: ७३५८३०२०९३\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: hello?",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं यहाँ हूँ, बताइए। [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: ७३५८३०२०९३\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: You are wrong about my mobile mobile number.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं समझती हूँ, आपको अपने मोबाइल नंबर के बारे में कुछ समस्या है, बताइए मैं आपकी कैसे मदद कर सकती हूँ? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: ७३५८३०२०९३\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: Actually I bought a PC.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपने पीसी खरीदा है, क्या आपको उसके बारे में कोई जानकारी चाहिए या कोई समस्या है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: ७३५८३०२०९३\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: And I need help with",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं आपकी मदद करने के लिए तैयार हूँ, बताइए आपको किस प्रकार की मदद चाहिए? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "[CONTEXT — do NOT ask again]\nCustomer name: दोनाली विश्वाल\nCustomer mobile: ७३५८३०२०९३\nLanguage locked: hi\nReply in Hindi only. Tag every reply [LANG:hi].\n[END CONTEXT]\nCustomer said: Sorry actually installation is done but it's not calling properly.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं समझती हूँ, आपका पीसी इंस्टॉल हो गया है लेकिन वह ठीक से काम नहीं कर रहा है, मैं आपको सेवा टीम के पास भेज देती हूँ। [HANDOFF:service] [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Sorry actually installation is done but it's not calling properly.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं समझती हूँ, आपका पीसी इंस्टॉल हो गया है लेकिन वह ठीक से काम नहीं कर रहा है, कृपया मुझे बताएं कि क्या समस्या हो रही है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Wait wait.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " कृपया बताएं कि आपको क्या समस्या हो रही है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "not",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " कृपया बताएं कि आपको क्या समस्या हो रही है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "So I didn't install it myself, but I didn't call any technician either.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " तो आप बता रहे हैं कि आपने खुद से इंस्टॉल नहीं किया और न ही किसी तकनीशियन को बुलाया, तो फिर यह कैसे हुआ? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Talk to in English ना?",
+      "lang": "en"
+    },
+    {
+      "role": "assistant",
+      "content": "I'm afraid we've already established that we're communicating in Hindi. Let's continue in Hindi, shall we? बताइए, आपको क्या समस्या हो रही है? [LANG:hi]",
+      "lang": "en"
+    },
+    {
+      "role": "user",
+      "content": "Hello.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं सुन रहा हूँ। कृपया बताएं कि आपको क्या समस्या हो रही है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "Is installation free?",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " इंस्टॉलेशन के बारे में जानकारी देने के लिए मैं तैयार हूँ। कृपया बताएं कि आपके पास कौन सा उत्पाद है जिसकी इंस्टॉलेशन होनी है? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "AC है ना बताया था.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " आपने पहले बताया था कि आपके पास एयर कंडीशनर है। तो क्या आपको एयर कंडीशनर की इंस्टॉलेशन के बारे में जानकारी चाहिए? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "हां.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " मैं आपको बता देता हूँ कि हमारी कंपनी में इंस्टॉलेशन की सुविधा उपलब्ध है, और इसके लिए कुछ शुल्क लिया जाता है। क्या आप इसके बारे में और जानकारी चाहते हैं? [LANG:hi]",
+      "lang": "hi"
+    },
+    {
+      "role": "user",
+      "content": "ठीक है बता दीजिए.",
+      "lang": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " हमारी कंपनी में इंस्टॉलेशन की सुविधा उपलब्ध है, और इसके लिए कुछ शुल्क लिया जाता है। यह शुल्क उत्पाद के प्रकार और स्थान के अनुसार भिन्न हो सकता है। कृपया अपने उत्पाद के बारे में अधिक जानकारी दें ताकि मैं आपको विशिष्ट जानकारी प्रदान कर सकूँ। [LANG:hi]",
+      "lang": "hi"
+    }
+  ]
+}
