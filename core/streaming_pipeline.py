@@ -551,6 +551,13 @@ class StreamingPipeline:
         state.reset_barge_engine()
 
         try:
+            # Play ring tone before greeting so caller hears a ring before agent speaks
+            from core.ring_tone import generate_ring_pcm
+            ring_pcm = generate_ring_pcm(duration_secs=3.0)
+            for i in range(0, len(ring_pcm), _AS_FRAME_BYTES):
+                frame_pcm = ring_pcm[i:i + _AS_FRAME_BYTES].ljust(_AS_FRAME_BYTES, b'\x00')
+                await audio_out.put(frame_pcm)
+
             for _ in range(_LEAD_SILENCE_FRAMES):
                 await audio_out.put(_SILENCE_FRAME)
             await self._tts_to_queue(self.welcome_message, audio_out, call_sid, state, session=session)

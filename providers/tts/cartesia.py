@@ -47,10 +47,9 @@ _BASE    = "https://api.cartesia.ai"
 _VERSION = "2024-06-10"
 _DEFAULT_VOICE = "a0e99841-438c-4a64-b679-ae501e7d6091"
 
-# Cartesia TTS models are optimised for ≥16kHz. Requesting 8kHz directly
-# produces noticeably lower quality. We generate at 16kHz and downsample
-# to the 8kHz slin16 that Asterisk AudioSocket expects.
-_TTS_SOURCE_RATE = 16000
+# Request 8kHz directly — matches AudioSocket slin16 and SIP G.711 limit.
+# No resampling step needed; Cartesia quality at 8kHz is sufficient for G.711.
+_TTS_SOURCE_RATE = 8000
  
 # Map internal lang codes → Cartesia BCP-47 language codes
 _LANG_MAP: dict[str, str] = {
@@ -195,19 +194,21 @@ class CartesiaTTS(BaseTTS):
     # ── Resampling ────────────────────────────────────────────────────────
     def _resample(self, pcm: bytes, state):
         """
-        Downsample slin16 PCM from _TTS_SOURCE_RATE to self.sample_rate.
+        Downsample slin16 PCM from _TTS_SOURCE_RATE to self.sample_rate if needed,
+        then apply gentle amplitude softening for phone line output.
 
         ``state`` must be threaded through successive calls within the same
         synthesis stream so audioop can carry fractional-sample state across
         chunk boundaries.  Pass None at the start of each new utterance.
-        Returns (resampled_bytes, new_state).
+        Returns (processed_bytes, new_state).
         """
-        if _TTS_SOURCE_RATE == self.sample_rate:
-            return pcm, state
-        resampled, new_state = audioop.ratecv(
-            pcm, 2, 1, _TTS_SOURCE_RATE, self.sample_rate, state
-        )
-        return resampled, new_state
+        if _TTS_SOURCE_RATE != self.sample_rate:
+            pcm, state = audioop.ratecv(
+                pcm, 2, 1, _TTS_SOURCE_RATE, self.sample_rate, state
+            )
+        # Gentle −2 dB softening: reduces harshness on phone/G.711 line
+        pcm = audioop.mul(pcm, 2, 0.80)
+        return pcm, state
 
     # ── Persistent per-call connection ─────────────────────────────────────
  
