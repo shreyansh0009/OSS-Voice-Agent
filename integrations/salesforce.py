@@ -142,32 +142,39 @@ async def create_case(
         return None
 
     try:
-        name = session.get("name", "Guest")
-        mobile = session.get("mobile", "")
-        intent = session.get("intent", "")
+        name    = session.get("name", "Guest")
+        mobile  = session.get("mobile", "")
+        intent  = session.get("intent", "")
         address = session.get("address", "")
+        product = session.get("product", "")
         pincode = _extract_pincode(address)
 
-        case_type = _classify_case_type(intent)
+        case_type    = _classify_case_type(intent)
         duration_str = _format_duration(duration_seconds)
-        now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        now_str      = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        logger.info(
+            f"Salesforce payload fields — name={name!r} mobile={mobile!r} "
+            f"intent={intent!r} product={product!r} address={address!r} pincode={pincode!r}"
+        )
 
         payload = {
-            "Subject": case_type,
-            "operation": "insert",
-            "user_name": name,
-            "Mobile": mobile,
-            "Pincode": pincode,
-            "issuedesc": intent or "Service Appointment",
-            "fulladdress": address,
-            "email": " ",
-            "preferred_date": now_str,
-            "recording_link": session.get("recording_url", ""),
-            "transcript": transcript_text,
-            "conversationDueration": duration_str,
-            "sentiment": "Neutral",
-            "Origin": "Phone",
-            "Priority": "High",
+            "Subject":                case_type,
+            "operation":              "insert",
+            "user_name":              name,
+            "Mobile":                 mobile,
+            "Pincode":                pincode,
+            "issuedesc":              intent or "Service Appointment",
+            "fulladdress":            address,
+            "product":                product,
+            "email":                  " ",
+            "preferred_date":         now_str,
+            "recording_link":         session.get("recording_url", ""),
+            "transcript":             transcript_text,
+            "conversationDueration":  duration_str,
+            "sentiment":              "Neutral",
+            "Origin":                 "Phone",
+            "Priority":               "High",
         }
 
         endpoint = f"{settings.sf_instance_url}/services/apexrest/caseService"
