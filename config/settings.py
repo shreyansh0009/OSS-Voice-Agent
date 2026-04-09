@@ -41,10 +41,10 @@ class Settings:
     elevenlabs_api_key: str = ""
     elevenlabs_voice_id: str = "21m00Tcm4TlvDq8ikWAM"  # Rachel (English default)
     elevenlabs_model: str = "eleven_flash_v2_5"
-    elevenlabs_stability: float = 0.5
-    elevenlabs_similarity_boost: float = 0.75
-    elevenlabs_style: float = 0.0
-    elevenlabs_speed: float = 1.0
+    elevenlabs_stability: float = 0.40
+    elevenlabs_similarity_boost: float = 0.85
+    elevenlabs_style: float = 0.15
+    elevenlabs_speed: float = 0.95
     # Per-language voice IDs (optional — Flash v2.5 works multilingually on any voice)
     elevenlabs_voice_hi: str = ""   # Hindi
     elevenlabs_voice_bn: str = ""   # Bengali
