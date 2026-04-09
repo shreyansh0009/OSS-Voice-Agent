@@ -428,7 +428,7 @@ class BaseAgent(ABC):
         session.add_message("assistant", full_reply)
  
         # Extract common data tags and save to session
-        for tag in ("NAME", "MOBILE"):
+        for tag in ("NAME", "MOBILE", "ADDRESS", "INTENT", "PRODUCT"):
             m = re.search(rf"\[{tag}:([^\]]+)\]", full_reply)
             if m:
                 session.set(tag.lower(), m.group(1).strip())

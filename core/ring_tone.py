@@ -27,10 +27,16 @@ def generate_ring_pcm(duration_secs: float = 3.0, sample_rate: int = 8000) -> by
     bytes
         Raw PCM bytes ready to split into 320-byte AudioSocket frames.
     """
-    # Ring cadence: 0.4s tone on, 0.2s silence, repeat
-    ON_SECS  = 0.4
-    OFF_SECS = 0.2
-    PERIOD   = ON_SECS + OFF_SECS  # 0.6s per cycle
+    # Indian PSTN ring cadence: two short bursts then a long pause
+    #   0.4s ON → 0.2s OFF → 0.4s ON → 2.0s OFF  (3.0s full cycle)
+    # Gives the classic "tring-tring ... tring-tring ..." pattern.
+    CADENCE = [
+        (0.4, True),   # first burst
+        (0.2, False),  # short gap
+        (0.4, True),   # second burst
+        (2.0, False),  # long pause
+    ]
+    PERIOD = sum(d for d, _ in CADENCE)  # 3.0s
 
     n_samples = int(sample_rate * duration_secs)
     buf = bytearray(n_samples * 2)  # 2 bytes per int16 sample
@@ -38,13 +44,23 @@ def generate_ring_pcm(duration_secs: float = 3.0, sample_rate: int = 8000) -> by
     for i in range(n_samples):
         t = i / sample_rate
         phase = t % PERIOD
-        if phase < ON_SECS:
+
+        # Determine whether this sample falls in a tone-on or silence segment
+        tone_on = False
+        cursor = 0.0
+        for seg_dur, seg_tone in CADENCE:
+            if phase < cursor + seg_dur:
+                tone_on = seg_tone
+                break
+            cursor += seg_dur
+
+        if tone_on:
             # Dual-tone: 400 Hz + 425 Hz, 0.35 each → 0.70 total (safe headroom)
             val = (0.35 * math.sin(2 * math.pi * 400 * t)
                  + 0.35 * math.sin(2 * math.pi * 425 * t))
             sample = int(val * 32767)
         else:
-            sample = 0  # silence between rings
+            sample = 0
 
         struct.pack_into('<h', buf, i * 2, sample)
 
